@@ -165,8 +165,9 @@ The website showcases 14 distinct business verticals:
 ### Installation
 1. Clone the repository
 2. Install dependencies: `npm install`
-3. Start development server: `npm run dev`
-4. Open http://localhost:5000
+3. Build project for production: `npm run build`
+4. Start development server: `npm run dev`
+5. Open http://localhost:5000
 
 ### Environment Variables
 ```env
