@@ -179,21 +179,27 @@ export default function ContactSection() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Business Vertical of Interest
                 </label>
-                <Select
-                  value={formData.businessVertical}
-                  onValueChange={(value) => handleInputChange("businessVertical", value)}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a business vertical" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {businessVerticals.map((vertical) => (
-                      <SelectItem key={vertical.id} value={vertical.id}>
-                        {vertical.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <div className="relative w-full">
+                  <Select
+                    value={formData.businessVertical}
+                    onValueChange={(value) => handleInputChange("businessVertical", value)}
+                  >
+                    <SelectTrigger className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <SelectValue placeholder="Select a business vertical" />
+                    </SelectTrigger>
+                    <SelectContent className="w-full min-w-[280%] bg-white border border-gray-200 rounded-md shadow-lg">
+                      {businessVerticals.map((vertical) => (
+                        <SelectItem
+                          key={vertical.id}
+                          value={vertical.id}
+                          className="cursor-pointer px-4 py-2 hover:bg-blue-50"
+                        >
+                          {vertical.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
               <div>
