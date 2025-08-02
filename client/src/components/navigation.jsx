@@ -9,6 +9,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAVIGATION_ITEMS, COMPANY_INFO } from "@/data/constants.js";
+import SvgIconWithTag from "./assets/logo-tag-line.jsx";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,8 +39,8 @@ export default function Navigation() {
             className="flex items-center cursor-pointer"
             onClick={() => handleNavClick("#home")}
           >
-            <div className="text-2xl font-bold text-inventta-blue">
-              {COMPANY_INFO.name.split(' ')[0]}<span className="text-inventta-green">{COMPANY_INFO.name.split(' ')[1]}</span>
+            <div className="w-48 h-auto">
+              <SvgIconWithTag/>
             </div>
           </motion.div>
 
