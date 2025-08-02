@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { COMPANY_INFO, FOOTER_LINKS } from "@/data/constants.js";
+import SvgIcon from "../assets/logo.jsx";
+
 
 export default function Footer() {
   const ref = useRef(null);
@@ -43,8 +45,9 @@ export default function Footer() {
           {/* Company Information */}
           <div className="md:col-span-2">
             <div className="text-3xl font-bold mb-4">
-              <span className="text-inventta-blue">INVENTTA</span>
-              <span className="text-inventta-green">GROUP</span>
+              <div className="w-88 h-auto">
+                <SvgIcon />
+              </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               {COMPANY_INFO.description}
