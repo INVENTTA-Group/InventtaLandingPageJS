@@ -13,11 +13,11 @@ import { MapPin, Phone, Mail } from "lucide-react";
 export const COMPANY_INFO = {
   name: "Inventta Group",
   tagline: "Leading India's Healthcare Revolution",
-  description: "Pioneering healthcare innovation across 14 business verticals, transforming lives through excellence in pharmaceuticals, medical technology, and comprehensive wellness solutions.",
-  foundedYear: 2010,
+  description: "Pioneering healthcare innovation across various business verticals, transforming lives through excellence in pharmaceuticals, medical technology, and comprehensive wellness solutions.",
+  foundedYear: 2016,
   headquarters: {
-    city: "Mumbai",
-    state: "Maharashtra",
+    city: "Gurgaon",
+    state: "Haryana",
     country: "India"
   },
   contact: {
@@ -26,13 +26,12 @@ export const COMPANY_INFO = {
       partnerships: "partnerships@inventtagroup.com"
     },
     phone: {
-      primary: "+91 22 1234 5678",
-      secondary: "+91 22 8765 4321"
+      primary: "+91 8929-0777-07"
     },
     address: [
       "Inventta Group Corporate Office",
-      "Business District, Mumbai",
-      "Maharashtra, India"
+      "JMD Megapolis, Badshahpur Sohna Road Hwy, Sector 48, Gurugram",
+      "Haryana, India"
     ]
   }
 };
@@ -63,11 +62,20 @@ export const NAVIGATION_ITEMS = [
 ];
 
 /**
+ * Navigation Menu Items
+ */
+export const NAVIGATION_ITEMS_VERTICALS = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" }
+];
+
+/**
  * Company Statistics for Animated Counters
  */
 export const COMPANY_STATS = [
   {
-    end: 14,
+    end: 16,
     suffix: "+",
     label: "Business Verticals",
     delay: 0
@@ -130,18 +138,17 @@ export const CONTACT_INFO = [
  */
 export const FOOTER_LINKS = {
   quickLinks: [
-    { label: "About Us", href: "#about" },
-    { label: "Our Businesses", href: "#businesses" },
-    { label: "Leadership", href: "#leadership" },
-    { label: "Careers", href: "#" },
-    { label: "Sustainability", href: "#" }
+    { label: "About Us", href: "/#about" },
+    { label: "Our Businesses", href: "/#businesses" },
+    { label: "Leadership", href: "/#leadership" },
+    { label: "Careers", href: "/careers" },
+    { label: "Sustainability", href: "/verticals/green-energy" }
   ],
   healthcareLinks: [
-    { label: "Healthcare Services", href: "#" },
-    { label: "Pharmaceuticals", href: "#" },
-    { label: "ZyraRx HealthTech", href: "#" },
-    { label: "Path Labs", href: "#" },
-    { label: "Cloud Hospitals", href: "#" }
+    { label: "Healthcare Services", href: "/verticals/healthcare" },
+    { label: "Pharmaceuticals", href: "/verticals/pharmaceuticals" },
+    { label: "ZyraRx HealthTech", href: "/verticals/zyrarx" },
+    { label: "Path Labs", href: "/verticals/healthcare" },
   ],
   socialLinks: [
     { icon: "fab fa-linkedin", href: "#", label: "LinkedIn" },
