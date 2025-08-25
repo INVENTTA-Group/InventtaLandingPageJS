@@ -34,8 +34,8 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
         >
-          Leading India's<br />
-          <span className="text-inventta-green">Healthcare Revolution</span>
+          Shaping India’s<br />
+          <span className="text-inventta-green">Innovation Journey</span>
         </motion.h1>
 
         <motion.p
@@ -44,7 +44,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl mb-8 opacity-90 font-light max-w-4xl mx-auto leading-relaxed"
         >
-          Pioneering healthcare innovation across 14 business verticals, transforming lives through excellence in pharmaceuticals, medical technology, and comprehensive wellness solutions.
+          Pioneering healthcare innovation across various business verticals, transforming lives through excellence in pharmaceuticals, medical technology, and comprehensive wellness solutions.
         </motion.p>
 
         <motion.div
