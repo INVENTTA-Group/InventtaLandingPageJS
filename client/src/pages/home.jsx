@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer.jsx";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div id="#homepage" className="min-h-screen">
       <Navigation />
       <HeroSection />
       <StatsSection />
