@@ -60,6 +60,8 @@
   }
 
   body {
+    margin: 0;
+    padding: 0;
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', system-ui, sans-serif;
   }
@@ -116,10 +118,112 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  .scroll-container {
+    display: flex;
+    overflow: hidden;
+    border: 3px solid #21c174;
+    -webkit-mask: linear-gradient(
+      90deg, 
+      transparent, 
+      white 20%,
+      white 80%, 
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent)  
+  }
+
+  .scroll-inner {
+    padding-block: 2rem;
+    display: flex;
+    gap: 2rem;
+    animation: scroll 20s linear infinite;
+
+  }
+
+  .scroller {
+    overflow: hidden; 
+  }
+
+  /* Subtle grid background for sections */
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  pointer-events: none;
+}
+
+/* Angled divider between hero and next content */
+.diagonal-divider {
+  position: relative;
+  height: 90px;
+  background: linear-gradient(180deg, rgba(2,6,23,0) 0%, rgba(2,6,23,1) 100%);
+  clip-path: polygon(0 0, 100% 30%, 100% 100%, 0% 100%);
+}
+
+/* Floating cards that visually straddle sections */
+.floating-card {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  padding: 18px 18px 20px 18px;
+  transition: transform 240ms ease, background 240ms ease, box-shadow 240ms ease;
+  will-change: transform;
+  overflow: hidden;
+}
+.floating-card.small { padding: 16px; }
+.floating-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.09);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* Soft inner glow line */
+.card-glow {
+  position: absolute;
+  inset: 1px;
+  border-radius: 14px;
+  background: radial-gradient(120px 80px at 20% 0%, rgba(34,197,94,0.15), transparent 60%);
+  pointer-events: none;
+}
+
+/* Neon-ish border on role cards */
+.glow-border {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 0 0 0 rgba(34,197,94,0);
+  transition: box-shadow 240ms ease;
+}
+.group:hover .glow-border {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.12),
+    0 0 0 3px rgba(34,197,94,0.18);
+}
+
+/* Gradient headline text */
+.gradient-text {
+  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.65) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
   
   @media (max-width: 768px) {
     .hero-parallax {
       background-attachment: scroll;
+    }
+  }
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
     }
   }
 }

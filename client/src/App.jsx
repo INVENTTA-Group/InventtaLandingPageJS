@@ -39,6 +39,7 @@ function Router() {
       <Route path="/verticals/green-energy" component={GreenEnergy}/>
       <Route path="/verticals/fashion" component={Fashion}/>
       <Route path="/verticals/media" component={Media}/>
+      <Route path="/careers" component={Careers}/>
       <Route component={NotFound} />
     </Switch>
   );
