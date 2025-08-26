@@ -1,7 +1,7 @@
 import { sql } from "drizzle-orm";
 import { text, serial, pgTable, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
+import { number, z } from "zod";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -15,6 +15,7 @@ export const contacts = pgTable("contacts", {
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
+  phone: text("phone").notNull(),
   businessVertical: text("business_vertical"),
   message: text("message").notNull(),
   createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
