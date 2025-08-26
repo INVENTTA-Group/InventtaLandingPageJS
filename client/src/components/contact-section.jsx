@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast.js";
-import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient.js";
 import { CONTACT_INFO } from "@/data/constants.js";
 import { businessVerticals } from "@/data/businessVerticals.js";
@@ -27,48 +26,50 @@ export default function ContactSection() {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     businessVertical: "",
     message: "",
   });
 
-  const contactMutation = useMutation({
-    mutationFn: async (data) => {
-      return await apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message Sent Successfully",
-        description: "Thank you for your inquiry. We'll get back to you soon.",
-      });
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        businessVertical: "",
-        message: "",
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error Sending Message",
-        description: error.message || "Please try again later.",
-        variant: "destructive",
-      });
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+  const handleSubmit = async (e) => {
+    setIsSubmitting(true);
+    try {
+      const res = await apiRequest("POST", "/api/contact", formData);
+      const resJson = await res.json();
+
+        if (resJson.stored && resJson.emailed) {
+          toast({
+            title: "Message Sent Successfully",
+            description: "We stored your inquiry and emailed our team.",
+          });
+        } if (!resJson.emailed) {
+          toast({
+            title: "Saved, but email failed",
+            description: "We’ll still get back to you soon.",
+            variant: "destructive",
+          });
+        }
+
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          businessVertical: "",
+          message: "",
+        });
+    } catch (error) {
       toast({
-        title: "Please fill in all required fields",
+        title: "Error",
+        description: error.message || "Something went wrong.",
         variant: "destructive",
       });
-      return;
+    } finally {
+      setIsSubmitting(false);
     }
 
-    contactMutation.mutate(formData);
   };
 
   const handleInputChange = (field, value) => {
@@ -177,6 +178,20 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone *
+                </label>
+                <Input
+                  type="phone"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  placeholder="+91 0000000000"
+                  className="w-full"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Business Vertical of Interest
                 </label>
                 <div className="relative w-full">
@@ -219,9 +234,9 @@ export default function ContactSection() {
               <Button
                 type="submit"
                 className="w-full bg-inventta-blue hover:bg-blue-700 text-white py-3 text-lg font-semibold"
-                disabled={contactMutation.isPending}
+                disabled={isSubmitting}
               >
-                {contactMutation.isPending ? "Sending..." : "Send Message"}
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </motion.div>
