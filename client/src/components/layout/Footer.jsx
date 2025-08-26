@@ -10,6 +10,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { COMPANY_INFO, FOOTER_LINKS } from "@/data/constants.js";
 import SvgIcon from "../assets/logo.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Footer() {
@@ -19,13 +20,27 @@ export default function Footer() {
   /**
    * Handles footer navigation clicks with smooth scrolling
    */
+  const navigate = useNavigate();
   const handleNavClick = (href) => {
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
+    if (href?.startsWith('/#')) {
+      // Split route & path
+      const [route, hash] = href.split('#');
+      
+      // Navigate to Path '/'
+      navigate(route);
+      // Wait Until the page loads
+      setTimeout(() => {
+        const element = document.querySelector(`#${hash}`);
+        console.log(element);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+        else {
+          console.log("Element Not Found: ", `#${hash}`);
+        }
+      }, 400)
+    }
+     else {
       window.open(href, '_blank', 'noopener,noreferrer');
     }
   };
