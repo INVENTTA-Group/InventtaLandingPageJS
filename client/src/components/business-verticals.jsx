@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { businessVerticals, getFeaturedVerticals, getOtherVerticals } from "@/data/businessVerticals.js";
+import { useNavigate } from "react-router-dom";
 import BusinessVerticalCard from "@/components/sections/BusinessVerticalCard.jsx";
 
 export default function BusinessVerticals() {
@@ -18,9 +19,10 @@ export default function BusinessVerticals() {
   const featuredVerticals = getFeaturedVerticals();
   const otherVerticals = getOtherVerticals();
 
+  const navigate = useNavigate();
+
   const handleVerticalClick = (vertical) => {
-    // Future enhancement: Navigate to detailed page or show modal
-    console.log(`Clicked on ${vertical.title}`);
+    navigate(`/verticals/${vertical.id}`, { state: { scrollTo: `${vertical.id}-vertical` } });
   };
 
   return (
